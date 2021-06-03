@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7822097531387566602}
+  - component: {fileID: 7030165270877547806}
   m_Layer: 10
   m_Name: PlaceToShoot
   m_TagString: Untagged
@@ -30,6 +31,22 @@ Transform:
   m_Father: {fileID: 2215057606567933758}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7030165270877547806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23618962260447626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d5f4c91dcb1e8478996dd8136d04a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 8926656766290770932, guid: 206b83d39dcb99a4b8f77c9fa09d02d6, type: 3}
+  _fireSFXIdx: 12
+  _autoFireRate: 0.5
+  _shootingPoint: {fileID: 7822097531387566602}
 --- !u!1 &2215057605634333058
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,8 +114,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1046954735
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1147401495359466748, guid: 02027016afbc5d544ab92ba819bc8094,
     type: 3}
@@ -240,9 +257,10 @@ MonoBehaviour:
     type: 3}
   _isShooting: 1
   _shootingRange: 7
-  _shootingPoint: {fileID: 7822097531387566602}
-  _bullet: {fileID: 8926656766290770932, guid: 206b83d39dcb99a4b8f77c9fa09d02d6, type: 3}
-  _autoFireRate: 0.5
+  _chaseDuration: 1
+  _damageSFXIdx: 2
+  _dieSFXIdx: 1
+  _weapon: {fileID: 7030165270877547806}
 --- !u!114 &6407474118489317114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,4 +273,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6870cf9499fc4d45982ce3e600e6132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 0.5

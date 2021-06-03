@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 190946596209323923}
   m_Layer: 9
   m_Name: PlayerBullet
-  m_TagString: Bullet
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1138344513
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3328242913338228825, guid: 56faa61c0738e9b43b0b5aa082c87bb1,
     type: 3}
@@ -148,3 +148,4 @@ MonoBehaviour:
   _hitEffect: {fileID: 6112350681360078379, guid: 9cbfdf1b3a5f8894f8c54ec923ac39cc,
     type: 3}
   _damage: 10
+  _impactSFXIdx: 4

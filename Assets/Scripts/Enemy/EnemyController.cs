@@ -31,14 +31,16 @@ public class EnemyController : MonoBehaviour
     private bool _isShooting;
     [SerializeField]
     private float _shootingRange = 10;
-    [SerializeField]    
-    private Transform _shootingPoint;
-    [SerializeField]    
-    private EnemyBullet _bullet;
 
     [SerializeField]    
-    private float _autoFireRate = 0.5f;
-    private float _nextShot = 0f;
+    private float _chaseDuration = 1f;
+    private bool _isChasing = false;
+
+    [SerializeField]
+    private int _damageSFXIdx, _dieSFXIdx;
+
+    [SerializeField]
+    private EnemyWeapon _weapon;
 
     void Start()
     {
@@ -48,10 +50,10 @@ public class EnemyController : MonoBehaviour
             Debug.LogError("EnemyController's Rigidbody2D is missing!");
         }
 
-        _player = PlayerController.s_instance;
+        _player = PlayerController.current;
         if (_player == null)
         {
-            Debug.LogError("PlayerController.s_instance is missing!");
+            Debug.LogError("PlayerController.current is missing!");
         }
 
         _animator = GetComponent<Animator>();
@@ -93,15 +95,9 @@ public class EnemyController : MonoBehaviour
 
         _rigidBody.velocity = _moveDirection * _moveSpeed;
 
-        if (_isShooting && Time.time > _nextShot && Vector3.Distance(transform.position, _player.transform.position) < _shootingRange)
+        if (_isShooting && Vector3.Distance(transform.position, _player.transform.position) < _shootingRange)
         {
-            _nextShot = Time.time + _autoFireRate;
-
-            Vector3 dir = _player.transform.position - transform.position;
-            dir.Normalize();
-
-            EnemyBullet bullet = Instantiate(_bullet, _shootingPoint.position, Quaternion.identity);
-            bullet.MoveDirection = dir;
+            _weapon.Fire();
         }
     }
 
@@ -110,19 +106,34 @@ public class EnemyController : MonoBehaviour
         Instantiate(_hitEffect, transform.position, Quaternion.identity);
 
         _health -= damage;
+
+        GameEvents.current.TriggerOnEnemyDamaged(this);
+
+        AudioManager.current.PlaySoundEffect(_damageSFXIdx);
+
         if (_health <= 0f)
         {
             Die();
         }
     }
 
+    IEnumerator ChaseDownRoutine()
+    {
+        yield return new WaitForSeconds(_chaseDuration);
+        _isChasing = false;
+    }
+
     void Die()
     {
-        Destroy(this.gameObject);
+        AudioManager.current.PlaySoundEffect(_dieSFXIdx);
+
+        GameEvents.current.TriggerOnEnemyDied(this);
 
         int splatter = Random.Range(0, _deathSplatters.Length);
         int rotation = Random.Range(0, 4);
 
         Instantiate(_deathSplatters[splatter], transform.position, Quaternion.Euler(0f, 0f, 90f * rotation));
+
+        Destroy(this.gameObject);
     }
 }

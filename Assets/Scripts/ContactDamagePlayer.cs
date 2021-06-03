@@ -5,13 +5,13 @@ using UnityEngine;
 public class ContactDamagePlayer : MonoBehaviour
 {
     [SerializeField]
-    private float _damage = 10;
+    private float _damage = 1;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.s_instance.DamagePlayer(_damage);
+            PlayerController.current.Damage(_damage);
         }
     }
 
@@ -19,7 +19,15 @@ public class ContactDamagePlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.s_instance.DamagePlayer(_damage);
+            PlayerController.current.Damage(_damage);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerController.current.Damage(_damage);
         }
     }
 
@@ -27,7 +35,7 @@ public class ContactDamagePlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.s_instance.DamagePlayer(_damage);
+            PlayerController.current.Damage(_damage);
         }
     }
 
@@ -35,7 +43,7 @@ public class ContactDamagePlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.s_instance.DamagePlayer(_damage);
+            PlayerController.current.Damage(_damage);
         }
     }
 }

@@ -13,6 +13,9 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField]
     private float _damage = 10;
 
+    [SerializeField]
+    private int _impactSFXIdx;
+
     private Rigidbody2D _rigidBody;
 
     void Start()
@@ -32,6 +35,8 @@ public class PlayerBullet : MonoBehaviour
     {
         Instantiate(_hitEffect, transform.position, Quaternion.identity);
 
+        AudioManager.current.PlaySoundEffect(_impactSFXIdx);
+
         if (other.gameObject.tag == "Enemy")
         {
             EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
@@ -42,8 +47,8 @@ public class PlayerBullet : MonoBehaviour
             
             enemy.Damage(_damage);
         }
-        
-        Destroy(gameObject);
+
+        Destroy(this.gameObject);
     }
 
     void OnBecameInvisible()

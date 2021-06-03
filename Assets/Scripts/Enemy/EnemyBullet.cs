@@ -13,6 +13,9 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField]
     private float _damage = 10;
 
+    [SerializeField]
+    private int _impactSFXIdx;
+
     public Vector3 MoveDirection { get; set; }
 
     void Update()
@@ -24,16 +27,18 @@ public class EnemyBullet : MonoBehaviour
     {
         Instantiate(_hitEffect, transform.position, Quaternion.identity);
 
+        AudioManager.current.PlaySoundEffect(_impactSFXIdx);
+
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.s_instance.DamagePlayer(_damage);
+            PlayerController.current.Damage(_damage);
         }
 
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

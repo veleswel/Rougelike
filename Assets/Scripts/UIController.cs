@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public static UIController s_instance;
+    public static UIController current;
 
     [SerializeField]    
     private Slider _healthSlider;
@@ -14,22 +14,40 @@ public class UIController : MonoBehaviour
     [SerializeField]    
     private GameObject _deathScreen;
 
-    public Slider HealthSlider { get { return _healthSlider; } }
-    public Text HealthText { get { return _healthText; } }
-    public GameObject DeathScreen { get {return _deathScreen; } }
-
     void Awake()
     {
-        s_instance = this;
+        current = this;
     }
 
     void Start()
     {
         _deathScreen.SetActive(false);
+
+        GameEvents.current.onPlayerHealthChanged += OnPlayerHealthChangedAction;
+        GameEvents.current.onPlayerDied += OnPlayerDiedAction;
     }
 
-    void Update()
+    void OnDestroy()
     {
-        
+        GameEvents.current.onPlayerHealthChanged -= OnPlayerHealthChangedAction;
+        GameEvents.current.onPlayerDied -= OnPlayerDiedAction;
+    }
+
+    public void InitPlayerHealthUI(float current, float max)
+    {
+        _healthSlider.value = current;
+        _healthSlider.maxValue = max;
+        _healthText.text = Mathf.RoundToInt(current).ToString();
+    }
+
+    void OnPlayerDiedAction()
+    {
+        _deathScreen.SetActive(true);
+    }
+
+    void OnPlayerHealthChangedAction(float health)
+    {
+        _healthSlider.value = health;
+        _healthText.text = Mathf.RoundToInt(health).ToString();
     }
 }
