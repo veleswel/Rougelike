@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7822097531387566602}
   - component: {fileID: 7030165270877547806}
   m_Layer: 10
-  m_Name: PlaceToShoot
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8926656766290770932, guid: 206b83d39dcb99a4b8f77c9fa09d02d6, type: 3}
   _fireSFXIdx: 12
-  _autoFireRate: 0.5
+  _shootingRange: 10
+  _autoFireRate: 0.25
+  _damage: 20
   _shootingPoint: {fileID: 7822097531387566602}
+  _body: {fileID: 2215057605634333060}
 --- !u!1 &2215057605634333058
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +96,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -144,7 +148,7 @@ GameObject:
   - component: {fileID: 2215057606567933744}
   - component: {fileID: 6407474118489317114}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: EnemySceletonRed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,10 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62b54abf0f56444099b96f016ab2896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _theBody: {fileID: 2215057605634333060}
-  _chaseRadius: 4
-  _health: 100
+  _moveSpeed: 4
+  _body: {fileID: 2215057605634333060}
+  _chaseRadius: 20
+  _health: 200
   _deathSplatters:
   - {fileID: 1217469185470369447, guid: 9cd27599a9bac434e9aeed8d2d1434ed, type: 3}
   - {fileID: 9008330231656106467, guid: db87e2a4985bb23408378dc6aa6dfd14, type: 3}
@@ -255,12 +259,9 @@ MonoBehaviour:
   - {fileID: 1795871429874270709, guid: 55f976e0c033e7148aa79f1c79b046ee, type: 3}
   _hitEffect: {fileID: 6112350681360078379, guid: 98330996abea79943ad81bf5c6b78b81,
     type: 3}
-  _isShooting: 1
-  _shootingRange: 7
   _chaseDuration: 1
   _damageSFXIdx: 2
   _dieSFXIdx: 1
-  _weapon: {fileID: 7030165270877547806}
 --- !u!114 &6407474118489317114
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,9 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]    
     private float _autoFireRate = 0.25f;
 
+    [SerializeField]    
+    private float _damage = 10f;
+
     private float _nextShot = 0f;
 
     [SerializeField]    
@@ -24,7 +27,8 @@ public class PlayerWeapon : MonoBehaviour
         {
             _nextShot = Time.time + _autoFireRate;
 
-            Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+            PlayerBullet bullet = Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
+            bullet.Damage = _damage;
             
             AudioManager.current.PlaySoundEffect(_fireSFXIdx);
         }

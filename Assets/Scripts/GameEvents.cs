@@ -12,10 +12,14 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action onPlayerDamaged, onPlayerDied;
+    public event Action onPlayerDamaged, onPlayerDied, onPlayerWon;
     public event Action<float> onPlayerHealthChanged;
     public event Action<EnemyController> onEnemyDamaged, onEnemyDied;
     public event Action<Breakable> onBreakableBroken;
+
+    public event Action<BaseCondition> onConditionCompleted;
+
+    public event Action<Room> onRoomCleared;
 
     public void TriggerOnPlayerHealthChanged(float health)
     {
@@ -30,6 +34,14 @@ public class GameEvents : MonoBehaviour
         if (onPlayerDied != null)
         {
             onPlayerDied();
+        }
+    }
+
+    public void TriggerOnPlayerWon()
+    {
+        if (onPlayerWon != null)
+        {
+            onPlayerWon();
         }
     }
 
@@ -62,6 +74,22 @@ public class GameEvents : MonoBehaviour
         if (onBreakableBroken != null)
         {
             onBreakableBroken(breakable);
+        }
+    }
+
+    public void TriggerOnConditionCompleted(BaseCondition condition)
+    {
+        if (onConditionCompleted != null)
+        {
+            onConditionCompleted(condition);
+        }
+    }
+
+    public void TriggerOnRoomCleared(Room room)
+    {
+        if (onRoomCleared != null)
+        {
+            onRoomCleared(room);
         }
     }
 }

@@ -11,12 +11,10 @@ public class EnemyBullet : MonoBehaviour
     private ParticleSystem _hitEffect;
 
     [SerializeField]
-    private float _damage = 10;
-
-    [SerializeField]
     private int _impactSFXIdx;
 
     public Vector3 MoveDirection { get; set; }
+    public float Damage { get; set; }
 
     void Update()
     {
@@ -31,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.current.Damage(_damage);
+            PlayerController.current.Damage(Damage);
         }
 
         Destroy(this.gameObject);

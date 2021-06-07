@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D _rigidBody;
     private Animator _animator;
     [SerializeField]
-    private SpriteRenderer _theBody;
+    private SpriteRenderer _body;
     private PlayerController _player;
 
     [SerializeField]
@@ -28,19 +28,7 @@ public class EnemyController : MonoBehaviour
     private ParticleSystem _hitEffect;
 
     [SerializeField]
-    private bool _isShooting;
-    [SerializeField]
-    private float _shootingRange = 10;
-
-    [SerializeField]    
-    private float _chaseDuration = 1f;
-    private bool _isChasing = false;
-
-    [SerializeField]
     private int _damageSFXIdx, _dieSFXIdx;
-
-    [SerializeField]
-    private EnemyWeapon _weapon;
 
     void Start()
     {
@@ -65,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (!_theBody.isVisible || !_player.gameObject.activeInHierarchy)
+        if (!_body.isVisible || !_player.gameObject.activeInHierarchy)
         {
             _rigidBody.velocity = Vector2.zero;
             return;
@@ -94,11 +82,6 @@ public class EnemyController : MonoBehaviour
         }
 
         _rigidBody.velocity = _moveDirection * _moveSpeed;
-
-        if (_isShooting && Vector3.Distance(transform.position, _player.transform.position) < _shootingRange)
-        {
-            _weapon.Fire();
-        }
     }
 
     public void Damage(float damage)
@@ -115,12 +98,6 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
-    }
-
-    IEnumerator ChaseDownRoutine()
-    {
-        yield return new WaitForSeconds(_chaseDuration);
-        _isChasing = false;
     }
 
     void Die()

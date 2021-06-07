@@ -9,9 +9,7 @@ public class PlayerBullet : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem _hitEffect;
-
-    [SerializeField]
-    private float _damage = 10;
+    public float Damage { get; set; }
 
     [SerializeField]
     private int _impactSFXIdx;
@@ -45,7 +43,7 @@ public class PlayerBullet : MonoBehaviour
                 Debug.LogError("Can't get EnemyController from " + other.gameObject.name);
             }
             
-            enemy.Damage(_damage);
+            enemy.Damage(Damage);
         }
 
         Destroy(this.gameObject);

@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]    
     private SpriteRenderer _bodySprite;
 
+    [SerializeField]    
+    private ParticleSystem _hitEffect;
+
     public SpriteRenderer BodySprite { get { return _bodySprite; } }
 
     private Camera _mainCamera;
@@ -48,6 +51,8 @@ public class PlayerController : MonoBehaviour
     private PlayerHealthController _healthController;
 
     private float _playerDamageSFXCountdown = 0f;
+
+    public bool DisableMovement { get; set; } = false;
 
     void Awake()
     {
@@ -75,6 +80,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (DisableMovement)
+        {
+            _rigidBody.velocity = Vector2.zero;
+            _animator.SetBool("isMoving", false);
+            return;
+        }
+
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
         _moveInput.Normalize();
@@ -145,26 +157,31 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(float damage)
     {
-        _healthController.DamagePlayer(damage);
-
-        if (_playerDamageSFXCountdown <= 0f)
+        if (_healthController.DamagePlayer(damage))
         {
-            AudioManager.current.PlaySoundEffect(_damageSFXIdx);
+            if (_playerDamageSFXCountdown <= 0f)
+            {
+                Instantiate(_hitEffect, transform.position, Quaternion.identity);
 
-            _playerDamageSFXCountdown = 1f;
-            StartCoroutine(PlayerDamageSFXDownRountine());
+                AudioManager.current.PlaySoundEffect(_damageSFXIdx);
+
+                _playerDamageSFXCountdown = 1f;
+                StartCoroutine(PlayerDamageSFXDownRountine());
+            }
+
+            if (_healthController.CurrentHealth <= 0)
+            {
+                gameObject.SetActive(false);
+
+                AudioManager.current.PlaySoundEffect(_dieSFXIdx);
+                GameEvents.current.TriggerOnPlayerDied();
+            }
         }
     }
 
     public void Heal(float heal)
     {
         _healthController.HealPlayer(heal);
-    }
-
-    public void Die()
-    {
-        PlayerController.current.gameObject.SetActive(false);
-        AudioManager.current.PlaySoundEffect(_dieSFXIdx);
     }
 
     public bool IsDashing()

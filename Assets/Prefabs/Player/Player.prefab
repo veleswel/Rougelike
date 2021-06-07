@@ -73,7 +73,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00022649765, y: -0.119749844}
+  m_Offset: {x: 0.0022160038, y: -0.09388596}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84,7 +84,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.62575626, y: 0.8801056}
+  m_Size: {x: 0.5024055, y: 0.56576025}
   m_EdgeRadius: 0
 --- !u!95 &1537623804470313483
 Animator:
@@ -125,6 +125,8 @@ MonoBehaviour:
   _gunHand: {fileID: 1537623805372863737}
   _weapon: {fileID: 4722275087343951229}
   _bodySprite: {fileID: 1537623804626297476}
+  _hitEffect: {fileID: 6112350681360078379, guid: 82bf871f1932bbb4c9434a04373e4c93,
+    type: 3}
   _damageSFXIdx: 11
   _dashSFXIdx: 8
   _dieSFXIdx: 9
@@ -188,6 +190,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -270,6 +273,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -352,6 +356,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -436,6 +441,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -460,7 +466,7 @@ SpriteRenderer:
   m_SortingLayerID: -1736724129
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4254059877319897387, guid: 48d85d1ef51430e42b6aef57f02c863d,
+  m_Sprite: {fileID: -7900295659209866551, guid: 48d85d1ef51430e42b6aef57f02c863d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -485,7 +491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 1537623806059302554}
-  _autoFireRate: 0.25
+  _autoFireRate: 0.075
+  _damage: 25
   _bullet: {fileID: 190946596209323923, guid: 681dcd45894df35478f69fe4195159c5, type: 3}
   _fireSFXIdx: 17
 --- !u!1 &1537623806059302553

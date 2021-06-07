@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
     private float _currentHealth;
+
+    public float CurrentHealth { get { return _currentHealth; } }
+
     [SerializeField]
     private float _maxHealth;
 
@@ -30,7 +33,7 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void DamagePlayer(float damage)
+    public bool DamagePlayer(float damage)
     {
         if (_invincibleCountdown <= 0f)
         {
@@ -39,12 +42,10 @@ public class PlayerHealthController : MonoBehaviour
             GameEvents.current.TriggerOnPlayerDamaged();
             GameEvents.current.TriggerOnPlayerHealthChanged(_currentHealth);
 
-            if (_currentHealth <= 0)
-            {
-                PlayerController.current.Die();
-                GameEvents.current.TriggerOnPlayerDied();
-            }
-        }   
+            return true;
+        }
+
+        return false;   
     }
 
     public void HealPlayer(float amount)
