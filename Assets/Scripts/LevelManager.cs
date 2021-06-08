@@ -10,9 +10,25 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private float _transitionTime = 2f;
 
+    private bool _isPaused = false;
+
     void Awake()
     {
         current = this;
+    }
+
+    void Start()
+    {
+        Time.timeScale = 1f;
+        PlayerController.current.DisableMovement = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpause();
+        }
     }
 
     public void LoadLevel(string levelToLoad)
@@ -22,10 +38,27 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator LevelLoadRoutine(string levelToLoad)
     {
-        GameEvents.current.TriggerOnPlayerWon();
         UIController.current.FadeOut();
 
         yield return new WaitForSeconds(_transitionTime);
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    public void PauseUnpause()
+    {
+        if (!_isPaused)
+        {
+            _isPaused = true;
+            Time.timeScale = 0f;
+            PlayerController.current.DisableMovement = true;
+        }
+        else
+        {
+            _isPaused = false;
+            Time.timeScale = 1f;
+            PlayerController.current.DisableMovement = false;
+        }
+
+        UIController.current.EnablePauseScreen(_isPaused);
     }
 }

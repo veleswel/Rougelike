@@ -13,14 +13,20 @@ public class UIController : MonoBehaviour
     [SerializeField]    
     private Text _healthText;
     [SerializeField]
-    private Image _deathScreen, _fadeScreen;
+    private GameObject _deathScreen, _pauseScreen;
 
     [SerializeField]
-    private float _fadeTime = 2f;
+    private Image _fadeScreen;
+
+    [SerializeField]
+    private float _fadeInTime, _fadeOutTime = 2f;
+    private float _elapsedTime = 0f;
 
     private bool _isFadingIn = false, _isFadingOut = false;
 
-    private bool _isPlayerDead = false;
+
+    [SerializeField]
+    private string _newGameScene, _mainMenuScene;
 
     void Awake()
     {
@@ -29,40 +35,47 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        _deathScreen.enabled = false;
+        _deathScreen.SetActive(false);
+        _pauseScreen.SetActive(false);
 
         GameEvents.current.onPlayerHealthChanged += OnPlayerHealthChangedAction;
         GameEvents.current.onPlayerDied += OnPlayerDiedAction;
-
-        _isPlayerDead = false;
         
         _isFadingIn = true;
         _isFadingOut = false;
+
+        _elapsedTime = 0f;
     }
 
     void Update()
     {
-        if (_isPlayerDead == true && Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            return;
-        }
-
         if (_isFadingIn)
         {
-            _fadeScreen.color = new Color(_fadeScreen.color.r, _fadeScreen.color.g, _fadeScreen.color.b, Mathf.MoveTowards(_fadeScreen.color.a, 0f, Time.deltaTime * _fadeTime));
-            if (_fadeScreen.color.a == 0f)
+            if (_elapsedTime < _fadeInTime)
             {
-                _isFadingIn = false;
+                _fadeScreen.color = new Color(_fadeScreen.color.r, _fadeScreen.color.g, _fadeScreen.color.b, 1f - Mathf.Clamp01(_elapsedTime /_fadeInTime));
+
+                _elapsedTime += Time.deltaTime;
+
+                if (_elapsedTime >= _fadeInTime)
+                {
+                    _isFadingIn = false;
+                }
             }
         }
 
         if (_isFadingOut)
         {
-            _fadeScreen.color = new Color(_fadeScreen.color.r, _fadeScreen.color.g, _fadeScreen.color.b, Mathf.MoveTowards(_fadeScreen.color.a, 1f, Time.deltaTime * _fadeTime));
-            if (_fadeScreen.color.a == 1f)
+            if (_elapsedTime < _fadeOutTime)
             {
-                _isFadingOut = false;
+                _fadeScreen.color = new Color(_fadeScreen.color.r, _fadeScreen.color.g, _fadeScreen.color.b, Mathf.Clamp01(_elapsedTime /_fadeOutTime));
+
+                _elapsedTime += Time.deltaTime;
+
+                if (_elapsedTime >= _fadeOutTime)
+                {
+                    _isFadingOut = false;
+                }
             }
         }
     }
@@ -82,8 +95,10 @@ public class UIController : MonoBehaviour
 
     void OnPlayerDiedAction()
     {
-        _deathScreen.enabled = false;
-        _isPlayerDead = true;
+        _deathScreen.SetActive(true);
+
+        _pauseScreen.SetActive(false);
+        _fadeScreen.gameObject.SetActive(false);
     }
 
     void OnPlayerHealthChangedAction(float health)
@@ -96,5 +111,27 @@ public class UIController : MonoBehaviour
     {
         _isFadingIn = false;
         _isFadingOut = true;
+
+        _elapsedTime = 0f;
+    }
+
+    public void EnablePauseScreen(bool isEnabled)
+    {
+        _pauseScreen.SetActive(isEnabled);
+    }
+
+    public void OnNewGameButtonClicked()
+    {
+        SceneManager.LoadScene(_newGameScene);
+    }
+
+    public void OnMainMenuButtonClicked()
+    {
+        SceneManager.LoadScene(_mainMenuScene);
+    }
+
+    public void OnResumeButtonClicked()
+    {
+        LevelManager.current.PauseUnpause();
     }
 }

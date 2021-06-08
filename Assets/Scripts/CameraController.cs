@@ -17,19 +17,19 @@ public class CameraController : MonoBehaviour
         current = this;
     }
 
+    void Update()
+    {
+        if (_target == null)
+        {
+            return;
+        }
+        
+        Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y, transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * _transitionSpeed);
+    }
+
     public void MoveToTarget(Transform target)
     {
         _target = target;
-        Vector3 targetPosition = new Vector3(_target.position.x, _target.position.y, transform.position.z);
-        StartCoroutine(MoveToTargetRoutine(targetPosition));
-    }
-
-    IEnumerator MoveToTargetRoutine(Vector3 targetPosition)
-    {
-        while (transform.position != targetPosition)
-        {
-            yield return null;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * _transitionSpeed);
-        }
     }
 }

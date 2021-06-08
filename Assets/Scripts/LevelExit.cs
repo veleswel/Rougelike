@@ -11,6 +11,7 @@ public class LevelExit : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            GameEvents.current.TriggerOnPlayerWon();
             PlayerController.current.DisableMovement = true;
             LevelManager.current.LoadLevel(_levelToLoad);
         }

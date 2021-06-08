@@ -9420,6 +9420,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1560540173123672437, guid: 9d0d2adc6208c2e448febc0123a0ce5d,
+        type: 3}
+      propertyPath: _transitionTime
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7966902358790616184, guid: 9d0d2adc6208c2e448febc0123a0ce5d,
         type: 3}
       propertyPath: m_RootOrder
@@ -14246,7 +14251,7 @@ PrefabInstance:
     - target: {fileID: 5715254974660376955, guid: 67ebd37671fee07439c0352eb5100916,
         type: 3}
       propertyPath: _levelToLoad
-      value: Test Start
+      value: Victory
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67ebd37671fee07439c0352eb5100916, type: 3}
@@ -14366,6 +14371,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050183979953737996, guid: 129d19e055406314db5ca52cc3ffc6ef,
+        type: 3}
+      propertyPath: _newGameScene
+      value: Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050183979953737996, guid: 129d19e055406314db5ca52cc3ffc6ef,
+        type: 3}
+      propertyPath: _mainMenuScene
+      value: Title Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8050183980480571957, guid: 129d19e055406314db5ca52cc3ffc6ef,
         type: 3}
