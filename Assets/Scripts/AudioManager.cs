@@ -19,14 +19,14 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        GameEvents.current.onPlayerDied += OnPlayerDiedAction;
-        GameEvents.current.onPlayerWon += OnPlayerWinAction;
+        GameEvents.Instance.onPlayerDied += OnPlayerDiedAction;
+        GameEvents.Instance.onPlayerWon += OnPlayerWinAction;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onPlayerDied -= OnPlayerDiedAction;
-        GameEvents.current.onPlayerWon -= OnPlayerWinAction;
+        GameEvents.Instance.onPlayerDied -= OnPlayerDiedAction;
+        GameEvents.Instance.onPlayerWon -= OnPlayerWinAction;
     }
 
     private void OnPlayerDiedAction()

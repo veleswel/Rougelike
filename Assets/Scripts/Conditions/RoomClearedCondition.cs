@@ -9,12 +9,12 @@ public class RoomClearedCondition : BaseCondition
 
     void Start()
     {
-        GameEvents.current.onRoomCleared += OnRoomClearedAction;
+        GameEvents.Instance.onRoomCleared += OnRoomClearedAction;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onRoomCleared -= OnRoomClearedAction;
+        GameEvents.Instance.onRoomCleared -= OnRoomClearedAction;
     }
 
     void OnRoomClearedAction(Room room)
@@ -22,7 +22,12 @@ public class RoomClearedCondition : BaseCondition
         if (_room == room)
         {
             IsConditionCompleted = true;
-            GameEvents.current.TriggerOnConditionCompleted(this);
+            GameEvents.Instance.TriggerOnConditionCompleted(this);
         }
+    }
+
+    public void SetRoom(Room room)
+    {
+        _room = room;
     }
 }

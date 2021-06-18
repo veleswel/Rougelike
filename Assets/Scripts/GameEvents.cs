@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents current;
+    static GameEvents _instance;
+    public static GameEvents Instance { get { return _instance; } }
 
     void Awake()
     {
-        current = this;
+        _instance = this;
     }
 
     public event Action onPlayerDamaged, onPlayerDied, onPlayerWon;
@@ -19,7 +20,7 @@ public class GameEvents : MonoBehaviour
 
     public event Action<BaseCondition> onConditionCompleted;
 
-    public event Action<Room> onRoomCleared;
+    public event Action<Room> onRoomCleared, onRoomBecameActive;
 
     public void TriggerOnPlayerHealthChanged(float health)
     {
@@ -90,6 +91,14 @@ public class GameEvents : MonoBehaviour
         if (onRoomCleared != null)
         {
             onRoomCleared(room);
+        }
+    }
+
+    public void TriggerOnRoomBecameActive(Room room)
+    {
+        if (onRoomBecameActive != null)
+        {
+            onRoomBecameActive(room);
         }
     }
 }

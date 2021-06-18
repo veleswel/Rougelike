@@ -90,7 +90,7 @@ public class EnemyController : MonoBehaviour
 
         _health -= damage;
 
-        GameEvents.current.TriggerOnEnemyDamaged(this);
+        GameEvents.Instance.TriggerOnEnemyDamaged(this);
 
         AudioManager.current.PlaySoundEffect(_damageSFXIdx);
 
@@ -104,7 +104,7 @@ public class EnemyController : MonoBehaviour
     {
         AudioManager.current.PlaySoundEffect(_dieSFXIdx);
 
-        GameEvents.current.TriggerOnEnemyDied(this);
+        GameEvents.Instance.TriggerOnEnemyDied(this);
 
         int splatter = Random.Range(0, _deathSplatters.Length);
         int rotation = Random.Range(0, 4);

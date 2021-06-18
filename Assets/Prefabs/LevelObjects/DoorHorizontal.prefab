@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712020236463577765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8896351003878858224}
@@ -47,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -153,6 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffed107d00c6df48bb9120e2f2d22dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roomsToConnect: []
-  _combinationRule: 0
   _doorBody: {fileID: 712020236463577765}
+  _conditions: []
+  _combinationRule: 0

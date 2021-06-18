@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
                 gameObject.SetActive(false);
 
                 AudioManager.current.PlaySoundEffect(_dieSFXIdx);
-                GameEvents.current.TriggerOnPlayerDied();
+                GameEvents.Instance.TriggerOnPlayerDied();
             }
         }
     }

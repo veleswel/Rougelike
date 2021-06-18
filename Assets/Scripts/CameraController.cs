@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController current;
+    static CameraController _instance;
+    public static CameraController Instance { get { return _instance; } }
 
     [SerializeField]
     private float _transitionSpeed = 30f;
@@ -14,7 +15,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        current = this;
+        _instance = this;
     }
 
     void Update()

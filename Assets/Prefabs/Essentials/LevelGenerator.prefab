@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3806386549541083805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3806386549541083806}
+  m_Layer: 0
+  m_Name: GenerationPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3806386549541083806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806386549541083805}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3806386549946092982}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3806386549946092980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3806386549946092982}
+  - component: {fileID: 3806386549946092981}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3806386549946092982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806386549946092980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3806386549541083806}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3806386549946092981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806386549946092980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c68ed2caf0cc434e99e3b6f26056b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layoutRoom: {fileID: 8246901780588917120, guid: 8bb7ad7112241d6479022269043a8d62,
+    type: 3}
+  _doorVertical: {fileID: 8896351003878858226, guid: 697b8f94b95464642afc409c317da7be,
+    type: 3}
+  _doorHorizontal: {fileID: 8896351003878858226, guid: 7bb7ccab9186939489a4ab41a57d9179,
+    type: 3}
+  _rooms:
+    _left: {fileID: 3916331833335728475, guid: f091ec5a0bf14364c85228efb0045f18, type: 3}
+    _right: {fileID: 4313501647214169719, guid: 9044775e767d21441804e0f777f960ca,
+      type: 3}
+    _up: {fileID: 4196373660837533971, guid: 4335dc98d90de1c41bbdbc509c9df42e, type: 3}
+    _down: {fileID: 8429923305644443265, guid: 8b297ce4dc3b2254faed9946e6c4e73d, type: 3}
+    _leftRight: {fileID: 2592318121103466294, guid: 5a82afc10d0445649afb8775dcd0ba64,
+      type: 3}
+    _leftUp: {fileID: 2818263352712328400, guid: 5463549a5498da847a3cab76bbbde8b6,
+      type: 3}
+    _leftDown: {fileID: 1192004062542174827, guid: 4318553c28f2a674297a531450e71376,
+      type: 3}
+    _rightUp: {fileID: 4051059813020383567, guid: e5d4f13a9fb2a9b4e9dfd7d1ad8d27ea,
+      type: 3}
+    _rightDown: {fileID: 6255894961310650429, guid: fd5b728d449683c49b5487d1c6a36d8a,
+      type: 3}
+    _upDown: {fileID: 495591243717353568, guid: 769f968932b40e74e97a2b079cf9fbbc,
+      type: 3}
+    _leftRightUp: {fileID: 5939020240387019190, guid: 89c10e0c11d48dd45b23b5f3be28dc02,
+      type: 3}
+    _leftRightDown: {fileID: 5026050613465923615, guid: 568ff2cafc4e62e4f9537c908df39d19,
+      type: 3}
+    _leftUpDown: {fileID: 773006766389517627, guid: 59b1fab410006404cb712cdd486aaea4,
+      type: 3}
+    _rightUpDown: {fileID: 2508879224858800647, guid: e0f0dda0dd236494397b58b5415f6e2a,
+      type: 3}
+    _leftRightUpDown: {fileID: 5262773951483686021, guid: fa82c453e857a2e4cae819449e68f382,
+      type: 3}
+  _roomsToGenerate: 10
+  _startToEndColoring:
+    serializedVersion: 2
+    key0: {r: 0, g: 1, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  _generatorPoint: {fileID: 3806386549541083806}
+  _xOffset: 18
+  _yOffset: 10
+  _generatorRoomLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  _startRoomCenter: {fileID: 4887445607845127576, guid: 49faafcdf25ff1346ab3abedf9d28d55,
+    type: 3}
+  _endRoomCenter: {fileID: 2019097540233263545, guid: 88d61f92b7aa8834f89eb6a793eca51a,
+    type: 3}
+  _potentialRoomCenters:
+  - {fileID: 4887445607845127576, guid: 49faafcdf25ff1346ab3abedf9d28d55, type: 3}
+  - {fileID: 2614177767415743084, guid: 2b9b04713a5161f4d8dbe2ca0bbe3e67, type: 3}
+  - {fileID: 8903420634469072606, guid: 76c4aa5762834db4687f5697691b80ce, type: 3}
+  - {fileID: 2175417580869921999, guid: 678f00d0b438c1140b2c214c6ea6a00e, type: 3}
+  - {fileID: 1656134917868968927, guid: dcbdc16855d452a4f8ad570cc2bc652b, type: 3}
+  _roomClearedCondition: {fileID: 5655187955186117537, guid: b1365eee6dbe28049b59b5089ce5dd05,
+    type: 3}
+  _roomBecameActiveCondition: {fileID: 2165351672568703098, guid: 15584daf3b255834fb9d8ac16dd39f85,
+    type: 3}

@@ -38,8 +38,8 @@ public class UIController : MonoBehaviour
         _deathScreen.SetActive(false);
         _pauseScreen.SetActive(false);
 
-        GameEvents.current.onPlayerHealthChanged += OnPlayerHealthChangedAction;
-        GameEvents.current.onPlayerDied += OnPlayerDiedAction;
+        GameEvents.Instance.onPlayerHealthChanged += OnPlayerHealthChangedAction;
+        GameEvents.Instance.onPlayerDied += OnPlayerDiedAction;
         
         _isFadingIn = true;
         _isFadingOut = false;
@@ -82,8 +82,8 @@ public class UIController : MonoBehaviour
 
     void OnDestroy()
     {
-        GameEvents.current.onPlayerHealthChanged -= OnPlayerHealthChangedAction;
-        GameEvents.current.onPlayerDied -= OnPlayerDiedAction;
+        GameEvents.Instance.onPlayerHealthChanged -= OnPlayerHealthChangedAction;
+        GameEvents.Instance.onPlayerDied -= OnPlayerDiedAction;
     }
 
     public void InitPlayerHealthUI(float current, float max)

@@ -26,12 +26,12 @@ public class Door : MonoBehaviour
     {
         _doorBody.SetActive(true);
 
-        GameEvents.current.onConditionCompleted += OnConditionCompletedAction;
+        GameEvents.Instance.onConditionCompleted += OnConditionCompletedAction;
     }
 
     void OnDestroy()
     {
-        GameEvents.current.onConditionCompleted -= OnConditionCompletedAction;
+        GameEvents.Instance.onConditionCompleted -= OnConditionCompletedAction;
     }
 
     void OnConditionCompletedAction(BaseCondition baseCondition)
@@ -52,5 +52,15 @@ public class Door : MonoBehaviour
         }
 
         _doorBody.SetActive(!_isFullyCompleted);
+    }
+
+    public void AddCondition(BaseCondition condition)
+    {
+        _conditions.Add(condition);
+    }
+
+    public void SetCombinationRule(EOpenDoorConditionCombinationRule combinationRule)
+    {
+        _combinationRule = combinationRule;
     }
 }

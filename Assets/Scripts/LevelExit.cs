@@ -6,12 +6,12 @@ public class LevelExit : MonoBehaviour
 {
     [SerializeField]
     private string _levelToLoad;
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            GameEvents.current.TriggerOnPlayerWon();
+            GameEvents.Instance.TriggerOnPlayerWon();
             PlayerController.current.DisableMovement = true;
             LevelManager.current.LoadLevel(_levelToLoad);
         }

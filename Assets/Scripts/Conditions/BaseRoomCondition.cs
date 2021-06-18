@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BaseCondition : MonoBehaviour
 {
-    public bool IsConditionCompleted { get; set; }
+    public bool IsConditionCompleted { get; protected set; }
 }

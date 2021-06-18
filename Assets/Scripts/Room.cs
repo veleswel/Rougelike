@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    private bool _isActive = false;
+    public bool IsActive { get; private set; } = false;
 
-    [SerializeField]
-    private List<EnemyController> _enemies = new List<EnemyController>();
-
-    public List<EnemyController> Enemies { get { return _enemies; } }
-
-    void Start()
-    {
-        GameEvents.current.onEnemyDied += OnEnemyDiedEaction;
-    }
-
-    void OnDestroy()
-    {
-        GameEvents.current.onEnemyDied -= OnEnemyDiedEaction;
-    }
+    private Room[] _adjacentRooms = new Room[] { null, null, null, null };
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            _isActive = true;
+            IsActive = true;
 
-            CameraController.current.MoveToTarget(transform);
+            CameraController.Instance.MoveToTarget(transform);
+
+            GameEvents.Instance.TriggerOnRoomBecameActive(this);
         }
     }
 
@@ -35,20 +24,17 @@ public class Room : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _isActive = false;
+            IsActive = false;
         }
     }
 
-    void OnEnemyDiedEaction(EnemyController enemy)
+    public Room GetAdjacentRoom(Direction dir)
     {
-        if (_enemies.Count != 0 && _enemies.Contains(enemy))
-        {
-            _enemies.Remove(enemy);
-
-            if (_enemies.Count == 0)
-            {
-                GameEvents.current.TriggerOnRoomCleared(this);
-            }
-        }
+        return _adjacentRooms[(int)dir];
+    }
+    
+    public void SetAdjacentRoom(Direction dir, Room room)
+    {
+        _adjacentRooms[(int)dir] = room;
     }
 }

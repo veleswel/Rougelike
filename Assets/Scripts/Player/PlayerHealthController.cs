@@ -39,8 +39,8 @@ public class PlayerHealthController : MonoBehaviour
         {
             _currentHealth -= damage;
             
-            GameEvents.current.TriggerOnPlayerDamaged();
-            GameEvents.current.TriggerOnPlayerHealthChanged(_currentHealth);
+            GameEvents.Instance.TriggerOnPlayerDamaged();
+            GameEvents.Instance.TriggerOnPlayerHealthChanged(_currentHealth);
 
             return true;
         }
@@ -56,7 +56,7 @@ public class PlayerHealthController : MonoBehaviour
             _currentHealth = _maxHealth;
         }
 
-        GameEvents.current.TriggerOnPlayerHealthChanged(_currentHealth);
+        GameEvents.Instance.TriggerOnPlayerHealthChanged(_currentHealth);
     }
 
     public void SetInvincibleCountdown(float countdown)
